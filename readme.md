@@ -52,16 +52,6 @@ $ npm start
 
 The API is exposed on http://localhost:8000/api/v1
 
-Currently, the only available resource is `users`:
-
-`GET http://localhost:8000/api/v1/users` 
-
-This is a list of user objects like this:
-
-`{"id":"1", "avatar": "https://i.pravatar.cc/150?img=1", "name": "Morgan James"}`.
-
-To change the list of users, modify the `users.json` in the `./db` directory.
-
 ## App
 
 You will find the source code for the React Native application in the subdirectory `app`. 

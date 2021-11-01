@@ -1,21 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import UserList from './components/UserList';
+import InputsOutputs from "./components/InputsOutputs";
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export default function App() {
 
   const store = configureStore();
-  
+  const queryClient = new QueryClient()
   return (
+      <QueryClientProvider client={queryClient}>
     <Provider store={store}>
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <UserList></UserList>
+        <InputsOutputs></InputsOutputs>
       </View>
     </Provider>
+  </QueryClientProvider>
   );
 }
 
