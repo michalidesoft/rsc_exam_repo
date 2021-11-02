@@ -1,4 +1,4 @@
-
+var checkWord = require('check-word');
 export var lettersByNumber = [ "", "", "abc", "def", "ghi", "jkl",
     "mno", "pqrs", "tuv", "wxyz" ];
 
@@ -36,19 +36,20 @@ function generateSuggestions(inputNumberArray: string[] ,inputIterator: number, 
 }
 
 export function getSuggestions(param: string): string[]{
-    console.log("TEXTTTTT ", param)
-    // console.log("hash ", hashTable)
-    //TODO filter out 01
+    const finalArray = [] as string[];
+    const inputArrayNumbers = param.split("") as string[];
+    generateSuggestions(inputArrayNumbers, 0, [], inputArrayNumbers?.length, finalArray);
+    return finalArray;
+}
+
+export function getSuggestionsFiltered(param: string): string[]{
+    const words     = checkWord('en');
     // TODO check-word
     // var checkWord = require('check-word'),
     //     words     = checkWord('en'); // setup the language for check, default is en
     // words.check('dog'); // true
     // words.check('perro'); // false
     // words.check('hi'); // true
-    const finalArray = [] as string[];
-    const inputArrayNumbers = param.split("") as string[];
-    console.log(inputArrayNumbers)
-    generateSuggestions(inputArrayNumbers, 0, [], inputArrayNumbers?.length, finalArray);
-    console.log("Final arr", finalArray)
-    return finalArray;
+    const arr = getSuggestions(param)
+    return arr.filter((suggestion)=> words.check(suggestion))
 }

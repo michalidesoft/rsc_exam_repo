@@ -14,5 +14,7 @@ const getSuggestions = async (param: any) => {
     }
 };
 
-export const useSuggestions = (param: any):UseQueryResult<any, unknown> => useQuery([ 'suggestions', param ], () => getSuggestions(param));
+export const useSuggestions = (param: any):UseQueryResult<any, unknown> => useQuery([ 'suggestions', param ], () => getSuggestions(param),{
+    cacheTime: 35000,
+});
 
